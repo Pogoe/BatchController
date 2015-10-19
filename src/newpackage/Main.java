@@ -5,8 +5,7 @@ public class Main
     public static void main(String[] args)
     {
         System.out.println("Hej");
-        System.out.println("Farvel");
-    }    
-    
-    
+        System.out.println("asd");
+        System.out.println("dsa");
+    } 
 }
