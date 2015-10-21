@@ -8,5 +8,6 @@ public class Main
         System.out.println("asd");
         System.out.println("dsa");
         System.out.println("This shit tho");
+        System.out.println("tester");
     }    
 }
