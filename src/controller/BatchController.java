@@ -3,12 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package newpackage;
+package controller;
 
-import GreenhouseAPI.Greenhouse;
-import GreenhouseAPI.IGreenhouse;
-import PLCCommunication.PLCConnection;
-import PLCCommunication.UDPConnection;
+import plccommunication.*;
+import GreenHouseAPI.*;
 import java.util.BitSet;
 
 /**
