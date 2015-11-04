@@ -13,51 +13,60 @@ import java.util.BitSet;
  *
  * @author jacqueskwizera
  */
-public class BatchController implements iBatchController{
+public class BatchController implements iBatchController
+{
 
     PLCConnection con = new UDPConnection(5000, "192.168.0.10");
     IGreenhouse api = new Greenhouse(con);
 
-    
-    public double getTemp1(){        
+    public double getTemp1()
+    {
         return api.ReadTemp1();
     }
-    
-    public double getTemp2(){
+
+    public double getTemp2()
+    {
         return api.ReadTemp2();
-    
+
     }
-    
-    public double getMoist(){
+
+    public double getMoist()
+    {
         return api.ReadMoist();
     }
-    
-    public double getWaterLevel(){
+
+    public double getWaterLevel()
+    {
         return api.ReadWaterLevel();
     }
-    
-    public BitSet getErros(){
+
+    public BitSet getErros()
+    {
         BitSet bitSet = api.ReadErrors();
         //TODO: Konverter bitset til Error besked/klasse.
         return bitSet;
     }
 
-    public void setTemp(int kelvin) {
+    public void setTemp(int kelvin)
+    {
         api.SetTemperature(kelvin);
     }
 
-    public void setMoist(int moist) {
+    public void setMoist(int moist)
+    {
         api.SetMoisture(moist);
     }
 
-    public void addWater(int sec) {
+    public void addWater(int sec)
+    {
         api.AddWater(sec);
     }
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         // TODO code application logic here
     }
 

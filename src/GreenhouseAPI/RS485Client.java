@@ -6,14 +6,19 @@ import java.io.OutputStream;
 import java.util.*;
 import gnu.io.*;
 
-public class RS485Client {
+public class RS485Client
+{
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         ApplicationServerListener applicationServerListener = new ApplicationServerListener();
-        if (applicationServerListener.initClient()) {
+        if (applicationServerListener.initClient())
+        {
             Thread t2 = new Thread(applicationServerListener);
             t2.start();
-        } else {
+        }
+        else
+        {
             System.out.println("Error in App server");
         }
 
@@ -24,7 +29,8 @@ public class RS485Client {
  *
  * @author jc
  */
-class ApplicationServerListener implements Runnable, SerialPortEventListener {
+class ApplicationServerListener implements Runnable, SerialPortEventListener
+{
 
     static CommPortIdentifier portId;
     static CommPortIdentifier saveportId;
@@ -39,12 +45,15 @@ class ApplicationServerListener implements Runnable, SerialPortEventListener {
 
     boolean isTerminated = false;
 
-    ApplicationServerListener() {
+    ApplicationServerListener()
+    {
         System.out.println("ApplicationServerListener is starting");
     }
 
-    public boolean initClient() {
-        if (!initSerialPort()) {
+    public boolean initClient()
+    {
+        if (!initSerialPort())
+        {
             return false;
         }
 
@@ -52,37 +61,47 @@ class ApplicationServerListener implements Runnable, SerialPortEventListener {
     }
 
     @Override
-    public void run() {
+    public void run()
+    {
         System.out.println("ApplicationServerListener is in running state");
         int count = 0;
-        while (count < 10) {
-            try {
+        while (count < 10)
+        {
+            try
+            {
                 String messageString = "t";
                 writetoport(messageString);
                 Thread.sleep(1000);
                 messageString = "s";
                 writetoport(messageString);
                 Thread.sleep(1000);
-            } catch (InterruptedException e) {
+            } catch (InterruptedException e)
+            {
                 e.printStackTrace();
             }
             count++;
         }
     }
 
-    private boolean initSerialPort() {
+    private boolean initSerialPort()
+    {
         boolean result = true;
         boolean portFound = false;
         String defaultPort = "COM1";
 
         System.out.println("Start of initSerialPort");
         String osname = System.getProperty("os.name", "").toLowerCase();
-        if (osname.startsWith("windows")) {
+        if (osname.startsWith("windows"))
+        {
             defaultPort = "COM11";
             System.out.println(defaultPort);
-        } else if (osname.startsWith("linux")) {
+        }
+        else if (osname.startsWith("linux"))
+        {
             defaultPort = "/dev/ttyS0";
-        } else {
+        }
+        else
+        {
             System.out.println("Sorry, your operating system is not supported");
             return false;
         }
@@ -93,10 +112,13 @@ class ApplicationServerListener implements Runnable, SerialPortEventListener {
         portList = CommPortIdentifier.getPortIdentifiers();
         System.out.println("Set default port to " + defaultPort);
 
-        while (portList.hasMoreElements()) {
+        while (portList.hasMoreElements())
+        {
             portId = (CommPortIdentifier) portList.nextElement();
-            if (portId.getPortType() == CommPortIdentifier.PORT_SERIAL) {
-                if (portId.getName().equals(defaultPort)) {
+            if (portId.getPortType() == CommPortIdentifier.PORT_SERIAL)
+            {
+                if (portId.getName().equals(defaultPort))
+                {
                     System.out.println("Found port: " + defaultPort);
                     portFound = true;
                     break;
@@ -105,54 +127,67 @@ class ApplicationServerListener implements Runnable, SerialPortEventListener {
 
         }
 
-        if (!portFound) {
+        if (!portFound)
+        {
             System.out.println("port " + defaultPort + " not found.");
             return false;
         }
 
         // initalize serial port
-        try {
+        try
+        {
             serialPort = (SerialPort) portId.open("SimpleReadApp", 2000);
-        } catch (PortInUseException e) {
+        } catch (PortInUseException e)
+        {
             System.out.print("port in used");
 
             return false;
         }
 
-        try {
+        try
+        {
             inputStream = serialPort.getInputStream();
-        } catch (IOException e) {
+        } catch (IOException e)
+        {
             return false;
         }
 
-        try {
+        try
+        {
             serialPort.addEventListener(this);
-        } catch (TooManyListenersException e) {
+        } catch (TooManyListenersException e)
+        {
             return false;
         }
 
         // activate the DATA_AVAILABLE notifier
         serialPort.notifyOnDataAvailable(true);
 
-        try {
+        try
+        {
             // set port parameters
             serialPort.setSerialPortParams(19200, SerialPort.DATABITS_8,
                     SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
-        } catch (UnsupportedCommOperationException e) {
+        } catch (UnsupportedCommOperationException e)
+        {
             return false;
         }
 
-        try {
+        try
+        {
             // get the outputstream
             outputStream = serialPort.getOutputStream();
-        } catch (IOException e) {
+        } catch (IOException e)
+        {
             return false;
         }
 
-        try {
+        try
+        {
             // activate the OUTPUT_BUFFER_EMPTY notifier
             serialPort.notifyOnOutputEmpty(true);
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             System.out.println("Error setting event notification");
             System.out.println(e.toString());
             return false;
@@ -161,18 +196,23 @@ class ApplicationServerListener implements Runnable, SerialPortEventListener {
         return result;
     }
 
-    public void writetoport(String messageString) {
+    public void writetoport(String messageString)
+    {
         System.out.println("Writing \"" + messageString + "\" to " + serialPort.getName());
-        try {
+        try
+        {
             // write string to serial port
             outputStream.write(messageString.getBytes());
-        } catch (IOException e) {
+        } catch (IOException e)
+        {
         }
     }
 
-    public void serialEvent(SerialPortEvent event) {
+    public void serialEvent(SerialPortEvent event)
+    {
 
-        switch (event.getEventType()) {
+        switch (event.getEventType())
+        {
             case SerialPortEvent.BI:
             case SerialPortEvent.OE:
             case SerialPortEvent.FE:
@@ -185,7 +225,8 @@ class ApplicationServerListener implements Runnable, SerialPortEventListener {
                 break;
             case SerialPortEvent.DATA_AVAILABLE:
                 byte[] readBuffer = new byte[16];
-                try {
+                try
+                {
                     // read data
                     int numBytes = 0;
                     numBytes = inputStream.read(readBuffer, 0, 16);
@@ -193,7 +234,8 @@ class ApplicationServerListener implements Runnable, SerialPortEventListener {
                     // print data
                     String result = new String(readBuffer);
                     System.out.println("Read s: " + numBytes + "_" + result.substring(0, numBytes));
-                } catch (IOException e) {
+                } catch (IOException e)
+                {
                 }
                 break;
         }

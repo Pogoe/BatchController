@@ -1,6 +1,5 @@
 package GreenhouseAPI;
 
-
 import java.util.EventListener;
 
 /*
@@ -8,13 +7,12 @@ import java.util.EventListener;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
- * Not used
- * PLC callbacks
+ * Not used PLC callbacks
+ *
  * @author Steffen Skov
  */
-public interface ICallbacks 
+public interface ICallbacks
 {
-    void addAlarmListener(EventListener e);    
+    void addAlarmListener(EventListener e);
 }

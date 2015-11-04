@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://localhost:8003/ws/SCADA?wsdl" uri="xml-resources/web-service-references/SCADA/wsdl/localhost_8003/ws/SCADA.wsdl"/>
+    <system systemId="http://localhost:8003/ws/SCADA?xsd=1" uri="xml-resources/web-service-references/SCADA/wsdl/localhost_8003/ws/SCADA.xsd_1.xsd"/>
+    <system systemId="http://localhost:8003/ws/Batch?wsdl" uri="xml-resources/web-service-references/Batch/wsdl/localhost_8003/ws/Batch.wsdl"/>
+    <system systemId="http://localhost:8003/ws/Batch?xsd=1" uri="xml-resources/web-service-references/Batch/wsdl/localhost_8003/ws/Batch.xsd_1.xsd"/>
+    <system systemId="http://localhost:8003/ws/BatchController?wsdl" uri="xml-resources/web-service-references/BatchController/wsdl/localhost_8003/ws/BatchController.wsdl"/>
+    <system systemId="http://localhost:8003/ws/BatchController?xsd=1" uri="xml-resources/web-service-references/BatchController/wsdl/localhost_8003/ws/BatchController.xsd_1.xsd"/>
+</catalog>

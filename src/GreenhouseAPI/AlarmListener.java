@@ -1,6 +1,5 @@
 package GreenhouseAPI;
 
-
 import java.util.BitSet;
 import java.util.EventListener;
 
@@ -9,14 +8,13 @@ import java.util.EventListener;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
- * Not used 
- * Preparation for asynchronous approuch
+ * Not used Preparation for asynchronous approuch
+ *
  * @author Steffen Skov
  */
 public interface AlarmListener extends EventListener
 {
     void alarmRise(BitSet s);
-    
+
 }

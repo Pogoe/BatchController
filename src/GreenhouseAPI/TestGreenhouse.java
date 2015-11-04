@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package GreenhouseAPI;
 
 import plccommunication.UDPConnection;
@@ -11,17 +10,18 @@ import plccommunication.PLCConnection;
 
 /**
  * API tester
+ *
  * @author sps
  */
-public class TestGreenhouse 
+public class TestGreenhouse
 {
-    public static void main(String[] args) 
+    public static void main(String[] args)
     {
         //PLCConnection con = new UDPConnection(1025, "localhost");
         PLCConnection con = new UDPConnection(5000, "192.168.0.10");
         //PLCConnection con = new SerialConnection("COM4");
         //SerialConnection.getPortList("COM1");
-        
+
         IGreenhouse api = new Greenhouse(con);
         //api.SetRedLight(50);
         //api.SetTemperature(273 + 25);
@@ -29,11 +29,8 @@ public class TestGreenhouse
         //double outdoorTemperature; 
         //while (true)
         //   outdoorTemperature = api.ReadTemp2();
-        
-       
-        
-                
+
         //System.exit(3);
     }
-    
+
 }

@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package plccommunication;
 
 /**
  * Protocol structure
+ *
  * @author Steffen Skov
  */
-public interface IMessage 
+public interface IMessage
 {
     // direction defination
     final byte TOPLC = 0;
@@ -20,9 +20,9 @@ public interface IMessage
     final int COMMAND = 0;
     final int DIRECTION = 1;
     final int SERIAL_NO = 2;
-    final int SIZE =3;  // Size of data 
+    final int SIZE = 3;  // Size of data 
     // Timestamp to sec. precision
-    final int YEAR = 4; 
+    final int YEAR = 4;
     final int MONTH = 5;
     final int DAY = 6;
     final int HOUR = 7;
@@ -31,6 +31,5 @@ public interface IMessage
     // Data
     final int DATA_START = 10;
     final int MAX_DATA = 100 + DATA_START;
-    
-    
+
 }
